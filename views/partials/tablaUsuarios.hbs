@@ -1,0 +1,32 @@
+<table id="tabla" class="table " style="width:100%">
+    <thead>
+        <tr class="text-center fw-bold text-primary">
+            <th scope="col">Nombre</th>
+            <th scope="col">Usuario / Mail</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Ampliar</th>
+        </tr>
+    </thead>
+    {{#each allUsers}}
+    <tbody>
+        <tr class="text-center fw-bold">
+            <td>{{nombre}}</td>
+            <td>{{user}}</td>
+            <td>{{nivel}}</td>
+            <td>{{habilitado}}</td>
+            <td>
+                <div class="btn-toolbar d-fle justify-content-center" role="toolbar"
+                    aria-label="Toolbar with button groups">
+                    <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
+                        <form action="usuario/single/{{id}}" method="get">
+                            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#editarUsuario">más..</button>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    {{/each}}
+</table>

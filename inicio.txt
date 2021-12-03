@@ -1,0 +1,23 @@
+Gnerador de Proyecto
+
+*   NPM i express-generator
+*   express --view=hbs
+
+
+Paquetes 
+
+*   npm install --save-dev nodemon
+*   npm install dotenv
+*   npm install mysql
+*   npm install util
+
+
+Git
+
+Create a new repository on GitHub.com. 
+
+1.- $ git init -b main
+2-  $ git add .
+3-  $ git commit -m "First commit"
+4.- $ git remote add origin  <REMOTE_URL> 
+5.- $ git push origin main

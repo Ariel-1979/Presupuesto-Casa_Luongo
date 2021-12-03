@@ -1,0 +1,50 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <table class="table">
+        <thead>
+            <tr class="text-center fw-bold">
+                <th scope="col">Razón Social</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Ampliar</th>
+            </tr>
+        </thead>
+        {{#each vendor}}
+        <tbody>
+            <tr class="text-center fw-bold">
+                <td>{{razon_social}}</td>
+                <td>{{nombre}}</td>
+                <td>{{apellido}}</td>
+                <td>{{direccion}}</td>
+                <td>{{telefono}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm me-2" role="group" aria-label="Second group">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#editarProveedor">Editar</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="editarProveedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Proveedor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{>editarProveedor}}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="deleteForm" class="btn btn-danger">Borrar</button>
+                    <button type="submit" form="editForm" class="btn btn-success">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

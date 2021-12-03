@@ -1,0 +1,52 @@
+{{#each vendor}}
+<form action="/proveedor/editar/{{id}}" method="post" id="editForm">
+    <div class="mb-3 row">
+        <label for="razon_social" class="col-sm-2 col-form-label">Razón Social</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="razon_social" name="razon_social"
+                value="{{razon_social}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="nombre" name="nombre" value="{{nombre}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="apellido" name="apellido"
+                value="{{apellido}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="direccion" class="col-sm-2 col-form-label">Dirección</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="direccion" name="direccion"
+                value="{{direccion}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="telefono" class="col-sm-2 col-form-label">Teléfono</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="telefono" name="telefono"
+                value="{{telefono}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="email" name="email" value="{{email}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="observaciones" class="col-sm-2 col-form-label">Observaciones</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="observaciones" name="observaciones"
+                value="{{observaciones}}">
+        </div>
+    </div>
+</form>
+<form action="../delete/{{id}}" id="deleteForm" method="post"></form>
+{{/each}}

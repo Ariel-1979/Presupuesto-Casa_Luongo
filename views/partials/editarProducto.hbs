@@ -1,0 +1,54 @@
+{{#each product}}
+<form action="/producto/editar/{{id}}" method="post" id="editForm">
+    {{/each}}
+    <div class="mb-3 row">
+        <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+        <div class="col-sm-10">
+            {{#each product}}
+            <input class="form-control" list="datalistOptions" id="categoria" placeholder="{{categoria}}"
+                name="categoria">
+            {{/each}}
+            <datalist id="datalistOptions">
+                {{#each categoria}}
+                <option value="{{nombre}}">
+                    {{/each}}
+            </datalist>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="proveedor" class="col-sm-2 col-form-label">Proveedor</label>
+        <div class="col-sm-10">
+            {{#each product}}
+            <input class="form-control" list="datalistOption" id="proveedor" placeholder="{{proveedor}}"
+                name="proveedor" value="{{proveedor}}">
+            {{/each}}
+            <datalist id="datalistOption">
+                {{#each proveedor}}
+                <option value="{{razon_social}}">
+                    {{/each}}
+            </datalist>
+        </div>
+    </div>
+    {{#each product}}
+    <div class="mb-3 row">
+        <label for="producto" class="col-sm-2 col-form-label">Producto</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="producto" name="nombre" value="{{nombre}}">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="precio" name="precio" value="{{precio}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="observaciones" class="col-sm-2 col-form-label">Observaciones</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext fw-bold" id="observaciones" name="observaciones"
+                value="{{observaciones}}">
+        </div>
+    </div>
+    {{/each}}
+</form>

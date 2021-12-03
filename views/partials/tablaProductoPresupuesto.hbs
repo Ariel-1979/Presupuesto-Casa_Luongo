@@ -1,0 +1,29 @@
+<table id="tabla" class="table " style="width:100%">
+    <thead>
+        <tr class="text-center fw-bold text-primary">
+            <th scope="col">Producto</th>
+            <th scope="col">Lista</th>
+            <th scope="col">Presupuestado</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Agregar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each productos}}
+        <tr class="text-center fw-bold">
+            <form action="/presupuesto/createOrder/{{id}}" method="POST">
+                <input class="btn btn-outline-info text-black fw-bold" type="hidden" name="producto" value="{{nombre}}">
+                <td>{{nombre}}</td>
+                <td>{{precio}}</td>
+                <td><input class="btn btn-outline-info text-black fw-bold" type="number" name="precio"
+                        value="{{precio}}"></td>
+                <td><input class="btn btn-outline-info text-black fw-bold" type="number" name="cantidad" min="1"></td>
+                <td>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</script>

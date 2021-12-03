@@ -1,0 +1,29 @@
+<table id="tabla" class="table " style="width:100%">
+    <thead>
+        <tr class="text-center fw-bold text-primary">
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each allCategory}}
+        <tr class="text-center fw-bold">
+            <td>{{id}}</td>
+            <td>{{nombre}}</td>
+            <td>
+                <div class="btn-toolbar d-fle justify-content-center" role="toolbar"
+                    aria-label="Toolbar with button groups">
+                    <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
+                        <form action="categoria/delete/{{id}}" method="POST">
+                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#borrarProducto">Borrar</button>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+ 

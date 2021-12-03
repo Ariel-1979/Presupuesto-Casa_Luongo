@@ -1,0 +1,28 @@
+<table id="tabla" class="table " style="width:100%">
+  <thead>
+    <tr class="text-center fw-bold text-primary">
+      <th scope="col">Categoria</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Ampliar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each productos}}
+    <tr class="text-center fw-bold">
+      <td>{{categoria}}</td>
+      <td>{{nombre}}</td>
+      <td>{{precio}}</td>
+      <td>
+        <div class="btn-toolbar d-fle justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
+            <form action="presupuesto/single/{{id}}" method="get">
+              <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+          </div>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

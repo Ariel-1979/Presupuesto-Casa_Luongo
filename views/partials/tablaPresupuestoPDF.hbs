@@ -1,0 +1,30 @@
+<table class="table " style="width:100%">
+    <thead>
+        <tr class="text-center fw-bold text-primary">
+            <th scope="col">Cantidad</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col">Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each presupuesto}}
+        <form action="/presupuesto/pdf/{{id}}" method="POST" id="viewPDF">
+        </form>
+        <form action="/presupuesto/deleteOrder/{{pedidos}}" method="POST">
+            <tr class="text-center fw-bold">
+                <td>{{cantidad}}</td>
+                <td>{{producto}}</td>
+                <td>{{precio}}</td>
+                <td>{{subtotal}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
+                        <button type="submit" class="btn btn-primary">Borrar</button>
+                    </div>
+                </td>
+            </tr>
+        </form>
+        {{/each}}
+    </tbody>
+</table>
