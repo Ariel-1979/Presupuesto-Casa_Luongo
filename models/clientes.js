@@ -8,7 +8,7 @@ const allCustomers = async () => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -19,7 +19,7 @@ const createCustomer = async (obj) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -30,7 +30,7 @@ const singleCustomer = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -39,10 +39,9 @@ const editCustomer = async (id, obj) => {
     const query = 'UPDATE ?? SET ? WHERE id = ?';
     const params = [TABLA_CLIENTES, obj, id];
     const rows = await pool.query(query, params);
-    console.log(rows);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -53,7 +52,7 @@ const dropCustomer = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

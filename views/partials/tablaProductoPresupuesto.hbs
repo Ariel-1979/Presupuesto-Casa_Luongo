@@ -1,4 +1,4 @@
-<table id="tabla" class="table " style="width:100%">
+<table id="tabla" class="table table-sm" style="width:100%">
     <thead>
         <tr class="text-center fw-bold text-primary">
             <th scope="col">Producto</th>
@@ -15,11 +15,12 @@
                 <input class="btn btn-outline-info text-black fw-bold" type="hidden" name="producto" value="{{nombre}}">
                 <td>{{nombre}}</td>
                 <td>{{precio}}</td>
-                <td><input class="btn btn-outline-info text-black fw-bold" type="number" name="precio"
+                <td><input class="btn btn-outline-info text-black fw-bold input__formulario" type="number" name="precio"
                         value="{{precio}}"></td>
-                <td><input class="btn btn-outline-info text-black fw-bold" type="number" name="cantidad" min="1"></td>
+                <td><input class="btn btn-outline-info text-black fw-bold input__formulario" type="number"
+                        name="cantidad" min="1"></td>
                 <td>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="btn"><i class="bi bi-plus-circle"></i></button>
                 </td>
             </form>
         </tr>

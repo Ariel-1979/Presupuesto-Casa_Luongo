@@ -1,0 +1,27 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="rows">
+    <div class="container d-flex justify-content-around mt-2 mb-2">
+      <h3 class="text-center titulo">Listado de Productos </h3>
+    </div>
+  </div>
+  <table id="tabla" class="table" style="width:100%">
+    <thead>
+      <tr class="text-center fw-bold text-primary">
+        <th scope="col">Categoria</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio Venta</th>
+        <th scope="col">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each allProducts}}
+      <tr class="text-center fw-bold">
+        <td>{{categoria}}</td>
+        <td>{{nombre}}</td>
+        <td class="text-success">{{precio}}</td>
+        <td>{{observaciones}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</main>

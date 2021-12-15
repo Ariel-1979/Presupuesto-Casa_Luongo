@@ -11,7 +11,7 @@ const createBudget = async (id_cliente) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -22,7 +22,7 @@ const allProducts = async () => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -33,7 +33,7 @@ const singleProduct = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -44,7 +44,7 @@ const createOrder = async (obj) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -56,7 +56,7 @@ const addOrder = async (obj, id) => {
     console.log(rows);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -67,7 +67,7 @@ const getOrder = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -78,7 +78,7 @@ const deleteProductOrder = async (pedidos) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -89,7 +89,7 @@ const getCustomerID = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -100,7 +100,7 @@ const getCustomerPdf = async (id_cliente) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

@@ -1,26 +1,27 @@
-<table id="tabla" class="table" style="width:100%">
+<table id="tabla" class="table table-sm" style="width:100%">
   <thead>
     <tr class="text-center fw-bold text-primary">
-      <th scope="col">Categoria</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Proveedor</th>
-      <th scope="col">Precio</th>
+      <th scope="col">Precio Venta</th>
+      <th scope="col">P. Costo(+IVA)</th>
+      <th scope="col">Precio Costo</th>
+      <th scope="col">Categoria</th>
       <th scope="col">Ampliar</th>
     </tr>
   </thead>
   <tbody>
     {{#each allProducts}}
     <tr class="text-center fw-bold">
-      <td>{{categoria}}</td>
       <td>{{nombre}}</td>
-      <td>{{proveedor}}</td>
-      <td>{{precio}}</td>
+      <td class="text-success">{{precio}}</td>
+      <td class="text-danger">{{precio_iva}}</td>
+      <td class="text-danger">{{precio_compra}}</td>
+      <td>{{categoria}}</td>
       <td>
         <div class="btn-toolbar d-fle justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
           <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
             <form action="producto/single/{{id}}" method="get">
-              <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#editarProducto">Ampliar</button>
+              <button type="submit" class="btn"><i class="bi bi-zoom-in icono"></i></button>
             </form>
           </div>
         </div>

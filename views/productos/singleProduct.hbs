@@ -1,1 +1,193 @@
-{{>singleProducto}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h3 class="titulo">Producto a Editar</h3>
+
+    {{#each product}}
+    <form action="/producto/delete/{{id}}" class="row g-3 mt-3" method="post" id="deleteForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+    </form>
+    <hr>
+    <form action="/producto/editar/{{id}}" class="row g-3 mt-3" method="post" id="editForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="PROVEEDOR">
+        </div>
+        <div class="col-4">
+            <input type="text" readonly class="form-control text-center fw-bold" name="proveedor"
+                placeholder="{{proveedor}}" value="{{proveedor}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="CATEGORIA">
+        </div>
+        <div class="col-4">
+            <input type="text" readonly class="form-control text-center fw-bold" name="categoria"
+                placeholder="{{categoria}}" value="{{categoria}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="PRODUCTO">
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control fw-bold" name="nombre" placeholder="{{nombre}}" value="{{nombre}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="OBSERVACIONES">
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control fw-bold" name="observaciones" placeholder="{{observaciones}}"
+                value="{{observaciones}}">
+        </div>
+        <div class="col-2 d-flex justify-content-around">
+            <button type="submit" form="deleteForm" class="btn"><i class="bi bi-trash icono__papelera"></i></button>
+            <button type="submit" form="editForm" class="btn"><i class="bi bi-check2-all icono__editar"></i></button>
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold text-danger" id="staticEmail2"
+                value="PRECIO DE COSTO">
+        </div>
+        <div class="col-2">
+            <input type="number" class="form-control fw-bold text-danger text-center" id="inputPassword2"
+                name="precio_compra" placeholder="{{precio_compra}}" value="{{precio_compra}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-danger" id="staticEmail3"
+                value="PRECIO COSTO (+ IVA)">
+        </div>
+        <div class="col-2">
+            <input type="number" class="form-control fw-bold text-danger text-center" id="inputPassword2"
+                name="precio_iva" placeholder="{{precio_iva}}" value="{{precio_iva}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-success"
+                id="staticEmail2" value="PRECIO DE VENTA">
+        </div>
+        <div class="col-2">
+            <input type="text" class="form-control fw-bold text-success text-center" id="inputPassword2" name="precio"
+                placeholder="{{precio}}" value="{{precio}}">
+        </div>
+    </form>
+    {{/each}}
+    <hr />
+    <div class="d-flex justify-content-around mt-4 mb-4">
+        <!-- Button Modal Proveedor -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleProveedor">
+            Editar Proveedor
+        </button>
+        <!-- Button Modal Categoria -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleCategoria">
+            Editar Categoria
+        </button>
+    </div>
+    <hr />
+
+    <!-- Modal Proveedor -->
+    <div class="modal fade" id="exampleProveedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center bg-info fst-italic">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Proveedor</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-4">
+                            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-danger"
+                                value="Proveedor Actual">
+                        </div>
+                        <div class="col-8">
+                            {{#each product}}
+                            <input readonly class="form-control fw-bold text-center" list="datalistOptions"
+                                id="exampleDataList" placeholder="{{proveedor}}">
+                            <form action="/producto/editar/{{id}}" class="row g-3 mt-3" method="post"
+                                id="editProveedor">
+                                <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+                                <input type="text" readonly class="visually-hidden" name="categoria"
+                                    value="{{categoria}}">
+                                <input type="text" readonly class="visually-hidden" name="precio" value="{{precio}}">
+                                <input type="text" readonly class="visually-hidden" name="precio_compra"
+                                    value="{{precio_compra}}">
+                                <input type="text" readonly class="visually-hidden" name="observaciones"
+                                    value="{{observaciones}}">
+                                <input type="text" readonly class="visually-hidden" name="nombre" value="{{nombre}}">
+                                {{/each}}
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-center">
+                        <div class="col-4">
+                            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-success"
+                                value="Proveedor Nuevo">
+                        </div>
+                        <div class="col-8">
+                            <input class="form-control" list="datalistOptions" id="exampleDataList" name="proveedor"
+                                placeholder="Elegir un proveedor">
+                            <datalist id="datalistOptions">
+                                {{#each proveedor}}
+                                <option value="{{razon_social}}">
+                                    {{/each}}
+                            </datalist>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editProveedor" class="btn btn-success">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Categoria-->
+    <div class="modal fade" id="exampleCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center bg-info fst-italic">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Categoria</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-4">
+                            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-danger"
+                                value="Categoria Actual">
+                        </div>
+                        <div class="col-8">
+                            {{#each product}}
+                            <input readonly class="form-control fw-bold text-center" placeholder="{{categoria}}">
+                            <form action="/producto/editar/{{id}}" class="row g-3 mt-3" method="post"
+                                id="editCategoria">
+                                <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+                                <input type="text" readonly class="visually-hidden" name="proveedor"
+                                    value="{{proveedor}}">
+                                <input type="text" readonly class="visually-hidden" name="precio" value="{{precio}}">
+                                <input type="text" readonly class="visually-hidden" name="precio_compra"
+                                    value="{{precio_compra}}">
+                                <input type="text" readonly class="visually-hidden" name="observaciones"
+                                    value="{{observaciones}}">
+                                <input type="text" readonly class="visually-hidden" name="nombre" value="{{nombre}}">
+                                {{/each}}
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-center">
+                        <div class="col-4">
+                            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-success"
+                                value="Categoria Nueva">
+                        </div>
+                        <div class="col-8">
+                            <input class="form-control" list="listCategory" id="dataList" name="categoria"
+                                placeholder="Elegir una categoria">
+                            <datalist id="listCategory">
+                                {{#each categoria}}
+                                <option value="{{nombre}}">
+                                    {{/each}}
+                            </datalist>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn btn-success">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

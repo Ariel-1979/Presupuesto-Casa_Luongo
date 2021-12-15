@@ -6,10 +6,9 @@ const allUsers = async () => {
     const query = 'SELECT * FROM ??';
     const params = [TABLA_USUARIOS];
     const rows = await pool.query(query, params);
-    console.log(`allUSER ROWS - ${rows}`);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -20,7 +19,7 @@ const createUser = async (obj) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -31,7 +30,7 @@ const singleUser = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -42,7 +41,7 @@ const editUser = async (id, obj) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -53,18 +52,18 @@ const deleteUser = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
-const auth = async ({ user, password }) => {
+const userAuthentication = async ({ user, password }) => {
   try {
-    const query = 'SELECT id, nivel FROM ?? WHERE user = ? AND password = ?';
+    const query = 'SELECT * FROM ?? WHERE user = ? AND password = ?';
     const params = [TABLA_USUARIOS, user, password];
     const rows = await pool.query(query, params);
     return rows;
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -74,5 +73,5 @@ module.exports = {
   singleUser,
   editUser,
   deleteUser,
-  auth,
+  userAuthentication,
 };

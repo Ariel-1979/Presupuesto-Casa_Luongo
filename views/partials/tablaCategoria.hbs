@@ -3,7 +3,7 @@
         <tr class="text-center fw-bold text-primary">
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Borrar</th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -16,8 +16,15 @@
                     aria-label="Toolbar with button groups">
                     <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
                         <form action="categoria/delete/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#borrarProducto">Borrar</button>
+                            <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal"><i
+                                    class="bi bi-trash icono__papelera"></i></button>
+                        </form>
+                    </div>
+                    <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
+                        <form action="categoria/single/{{id}}">
+                            <button type="submit" class="btn btn-outline-success" data-bs-toggle="modal"
+                                data-bs-target="#editarCategoria"><i
+                                    class="bi bi-check2-all icono__editar"></i></button>
                         </form>
                     </div>
                 </div>
@@ -26,4 +33,3 @@
         {{/each}}
     </tbody>
 </table>
- 

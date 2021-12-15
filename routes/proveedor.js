@@ -7,7 +7,8 @@ const proveedor = async (req, res) => {
     const allVendors = await model.allVendors();
     res.render('./proveedor/allVendors', { allVendors });
   } catch (error) {
-    console.log(error);
+    req.flash('danger_msg', 'SE PRODUJO UN ERROR DE CARGA DE DATOS');
+    res.redirect('/proveedor');
   }
 };
 
@@ -19,17 +20,20 @@ const singleVendor = async (req, res) => {
       vendor,
     });
   } catch (error) {
-    console.log(error);
+    req.flash('danger_msg', 'SE PRODUJO UN ERROR DE CARGA DE DATOS');
+    res.redirect('/proveedor');
   }
 };
 
 const createVendor = async (req, res) => {
   try {
     const newVendor = req.body;
-    const vendor = await model.createVendor(newVendor);
+    await model.createVendor(newVendor);
+    req.flash('success_msg', 'PROVEEDOR CREADO CON ÉXITO');
     res.redirect('/proveedor');
   } catch (error) {
-    console.log(error);
+    req.flash('danger_msg', 'ERROR AL CREAR EL PROVEEDOR');
+    res.redirect('/proveedor');
   }
 };
 
@@ -37,20 +41,24 @@ const editVendor = async (req, res) => {
   try {
     const id = req.params.id;
     const obj = req.body;
-    const editVendor = await model.editVendor(id, obj);
+    await model.editVendor(id, obj);
+    req.flash('success_msg', 'PROVEEDOR EDITADO CON ÉXITO');
     res.redirect('/proveedor');
   } catch (error) {
-    console.log(error);
+    req.flash('danger_msg', 'ERROR AL EDITAR EL PROVEEDOR');
+    res.redirect('/proveedor');
   }
 };
 
 const deleteVendor = async (req, res) => {
   try {
     const id = req.params.id;
-    const customer = await model.deleteVendor(id);
+    await model.deleteVendor(id);
+    req.flash('success_msg', 'PROVEEDOR BORRADO CON ÉXITO');
     res.redirect('/proveedor');
   } catch (error) {
-    console.log(error);
+    req.flash('danger_msg', 'ERROR AL BORRAR EL PROVEEDOR');
+    res.redirect('/proveedor');
   }
 };
 

@@ -1,8 +1,8 @@
-<table class="table " style="width:100%">
+<table class="table table-sm" style="width:100%">
     <thead>
         <tr class="text-center fw-bold text-primary">
-            <th scope="col">Cantidad</th>
             <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
             <th scope="col">Precio</th>
             <th scope="col">Subtotal</th>
             <th scope="col">Borrar</th>
@@ -14,13 +14,14 @@
         </form>
         <form action="/presupuesto/deleteOrder/{{pedidos}}" method="POST">
             <tr class="text-center fw-bold">
-                <td>{{cantidad}}</td>
                 <td>{{producto}}</td>
+                <td>{{cantidad}}</td>
                 <td>{{precio}}</td>
                 <td>{{subtotal}}</td>
                 <td>
                     <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn"><i
+                    class="bi bi-trash text-danger"></i></button>
                     </div>
                 </td>
             </tr>

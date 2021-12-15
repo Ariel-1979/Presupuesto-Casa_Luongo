@@ -1,4 +1,4 @@
-<table id="tabla" class="table " style="width:100%">
+<table id="tabla" class="table table-sm" style="width:100%">
     <thead>
         <tr class="text-center fw-bold text-primary">
             <th scope="col">Razón Social</th>
@@ -16,11 +16,11 @@
             <td>{{apellido}}</td>
             <td>{{telefono}}</td>
             <td>
-                <div class="btn-toolbar d-fle justify-content-center" role="toolbar"
+                <div class="btn-toolbar d-flex justify-content-center" role="toolbar"
                     aria-label="Toolbar with button groups">
                     <div class="btn-group btn-group-sm me-2" role="group" aria-label="First group">
                         <form action="/presupuesto/create/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-primary">Select</button>
+                            <button type="submit" class="btn"><i class="bi bi-plus-circle"></i></button>
                         </form>
                     </div>
                 </div>

@@ -10,6 +10,13 @@ Paquetes
 *   npm install dotenv
 *   npm install mysql
 *   npm install util
+*   npm i helmet          
+*   npm i sha1       // Encriptar Contraseñas
+
+
+// Babel 
+*   npm i @babel/core @babel/node @babel/cli @babel/preset-env -D
+
 
 
 Git

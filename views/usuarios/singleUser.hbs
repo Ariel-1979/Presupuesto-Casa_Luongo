@@ -1,1 +1,65 @@
-{{>singleUser}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h3 class="titulo">Editar Usuario</h3>
+
+    {{#each user}}
+    <form action="/usuario/delete/{{id}}" class="row g-3 mt-3" method="post" id="deleteForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+    </form>
+
+    <form action="/usuario/editar/{{id}}" class="row g-3 mt-3" method="post" id="editForm">
+        <div class="col-3">
+            <input type="text" readonly class="form-control text-center fw-bold" value="NOMBRE">
+        </div>
+        <div class="col-9">
+            <input type="text" id="validationDefault01" class="form-control fw-bold" name="nombre"
+                placeholder="{{nombre}}" value="{{nombre}}" required>
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control text-center fw-bold" value="USUARIO">
+        </div>
+        <div class="col-9">
+            <input type="mail" id="validationDefault02" class="form-control fw-bold" name="user" placeholder="{{user}}"
+                value="{{user}}" required>
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control text-center fw-bold" value="CLAVE">
+        </div>
+        <div class="col-9">
+            <input type="text" id="validationDefault03" class="form-control fw-bold" name="password"
+                placeholder="{{password}}" value="{{password}}" required>
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control text-center fw-bold" value="NIVEL">
+        </div>
+        <div class="col-9">
+            <select class="form-select fw-bold" id="validationDefault04" name="nivel"
+                aria-label="Default select example" required>
+                <option value="{{nivel}}">Nivel Actual : {{nivel}}</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Usuario">Usuario</option>
+                <option value="Deshabilitado">Deshabilitado</option>
+            </select>
+        </div>
+        <div class="col-12 d-flex justify-content-around">
+            <button type="submit" form="deleteForm" class="btn "><i class="bi bi-trash icono__papelera"></i></button>
+            <button type="submit" form="editForm" class="btn  "><i class="bi bi-check2-all icono__editar"></i></button>
+        </div>
+    </form>
+    {{/each}}
+</main>
+<script>
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

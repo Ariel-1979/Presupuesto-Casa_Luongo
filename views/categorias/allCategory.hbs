@@ -1,32 +1,37 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
   <div class="rows">
     <div class="container d-flex justify-content-around mt-2 mb-2">
-      <h3 class="text-center">Listado de Categorias</h3>
+      <h3 class="text-center titulo">Listado de Categorias</h3>
       <div class="btn-group btn-group-sm me-2" role="group" aria-label="Second group">
-        <button type="button" class="btn btn-success" data-bs-toggle="modal"
-          data-bs-target="#altaCategoria">Nueva</button>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#altaCategoria"><i
+            class="bi bi-plus-circle icono__verde"> Nueva Categoria</i></button>
       </div>
     </div>
   </div>
   {{>tablaCategoria}}
 </main>
 
-<!-- Modal -->
+<!-- Modal Alta de Categoria-->
 <div class="modal fade" id="altaCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog ">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alta de Categorias</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header bg-light justify-content-center">
+        <h5 class="modal-title fw-bold text-success" id="exampleModalLabel">ALTA DE CATEGORIA</h5>
       </div>
       <div class="modal-body">
         <form action="categoria/create" method="post" id="crearCategoria">
-          {{>altaCategoria}}
+          <div class="mb-3 row">
+            <label for="categoria" class="col-sm-2 col-form-label fw-bold">NOMBRE</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control fw-bold" name="nombre" id="categoria">
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
-        <button form="crearCategoria" type="submit" class="btn btn-success">Crear</button>
+        <button form="crearCategoria" type="submit" class="btn btn-outline-success"><i
+            class="bi bi-check2-all icono__editar"></i></button>
       </div>
     </div>
   </div>

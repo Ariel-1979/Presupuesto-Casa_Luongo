@@ -1,8 +1,9 @@
 <div class="mb-3 row">
-    <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+    <label id="validationDefault01" class="col-sm-2 col-form-label">Categoria</label>
     <div class="col-sm-10">
-        <input class="form-control" list="datalistOptions" id="categoria" placeholder="Opciones" name="categoria">
-        <datalist id="datalistOptions">
+        <input type="text" class="form-control" list="listCategorias" placeholder="Seleccione la Categoria"
+            name="categoria" id="validationDefault01" required>
+        <datalist id="listCategorias">
             {{#each categoria}}
             <option value="{{nombre}}">
                 {{/each}}
@@ -10,16 +11,11 @@
     </div>
 </div>
 <div class="mb-3 row">
-    <label for="producto" class="col-sm-2 col-form-label">Producto</label>
+    <label id="validationDefault02" for="proveedor" class="col-sm-2 col-form-label">Proveedor</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="producto" name="nombre" value="{{nombre}}">
-    </div>
-</div>
-<div class="mb-3 row">
-    <label for="proveedor" class="col-sm-2 col-form-label">Proveedor</label>
-    <div class="col-sm-10">
-        <input class="form-control" list="datalistOption" id="proveedor" placeholder="Opciones" name="proveedor">
-        <datalist id="datalistOption">
+        <input class="form-control" list="listProveedores" placeholder="Seleccione el Proveedor" name="proveedor"
+            id="validationDefault02" required>
+        <datalist id="listProveedores">
             {{#each proveedor}}
             <option value="{{razon_social}}">
                 {{/each}}
@@ -27,15 +23,54 @@
     </div>
 </div>
 <div class="mb-3 row">
-    <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+    <label id="validationDefault03" class="col-sm-2 col-form-label">Producto</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="precio" name="precio" value="{{precio}}">
+        <input type="text" class="form-control fw-bold" id="validationDefault03" name="nombre" value="{{nombre}}"
+            required>
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <label id="validationDefault04" for="precio" class="col-sm-2 col-form-label text-success">Precio Venta</label>
+    <div class="col-sm-10">
+        <input type="number" class="form-control fw-bold text-success" name="precio" value="{{precio}}"
+            id="validationDefault04" required>
     </div>
 </div>
 <div class="mb-3 row">
-    <label for="observaciones" class="col-sm-2 col-form-label">Observaciones</label>
+    <label id="validationDefault05" for="precio_compra" class="col-sm-2 col-form-label text-danger">Precio Costo</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="observaciones" name="observaciones"
-            value="{{observaciones}}">
+        <input type="number" class="form-control fw-bold text-danger" name="precio_compra" value="{{precio_compra}}"
+            id="validationDefault05" required>
     </div>
 </div>
+<div class="mb-3 row">
+    <label id="validationDefault06" for="precio_iva" class="col-sm-2 col-form-label text-danger">Costo (+ IVA)</label>
+    <div class="col-sm-10">
+        <input type="number" class="form-control fw-bold text-danger" name="precio_iva" value="{{precio_iva}}"
+            id="validationDefault06" required>
+    </div>
+</div>
+<div class="mb-3 row">
+    <label for="observaciones" class="col-sm-2 col-form-label">Detalles</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control fw-bold" name="observaciones" value="{{observaciones}}">
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

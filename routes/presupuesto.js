@@ -1,16 +1,15 @@
-const pool = require('../utils/bd');
 const express = require('express');
+const pool = require('../utils/bd');
 const model = require('../models/presupuesto');
-const {
-  singleProduct,
-  allProducts,
-  addOrder,
-} = require('../models/presupuesto');
+const { allProducts } = require('../models/presupuesto');
 const { allVendors } = require('../models/proveedores');
 const { allCategory } = require('../models/categorias');
 const { allCustomers } = require('../models/clientes');
-const PDF = require('pdfkit-construct');
-const { application } = require('express');
+const easyinvoice = require('easyinvoice');
+const fs = require('fs');
+const path = require('path');
+const { nextTick } = require('process');
+
 const router = express.Router();
 
 /*Variable para asignar a un Cliente un Pedido Específico  */
@@ -22,15 +21,13 @@ const createBudget = async (req, res) => {
     const newBudget = await model.createBudget(id_cliente);
     const { insertId } = newBudget;
     id_presupuesto = insertId;
-    /* const newOrder = await model.createOrder(id_presupuesto); */
-    /*  res.redirect('/presupuesto/productos'); */
     const productos = await allProducts();
     res.render('./presupuestos/productos', {
       productos,
       insertId,
     });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -45,9 +42,10 @@ const presupuesto = async (req, res) => {
       proveedor,
       categoria,
       clientes,
+      message: 'PRESUPUESTO',
     });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -72,9 +70,10 @@ const getProducts = async (req, res) => {
       categoria,
       presupuesto,
       total,
+      message: 'PRESUPUESTO',
     });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -90,7 +89,7 @@ const createOrder = async (req, res) => {
     const pedido = await model.createOrder(obj);
     res.redirect('/presupuesto/productos');
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -99,17 +98,17 @@ const getOrder = async (id) => {
     const presupuesto = await model.getOrder(id);
     return presupuesto;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
 const deleteProductOrder = async (req, res) => {
   try {
     const pedidos = req.params.pedidos;
-    const delProductOrder = await model.deleteProductOrder(pedidos);
+    await model.deleteProductOrder(pedidos);
     res.redirect('/presupuesto/productos');
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -124,92 +123,99 @@ const viewPDF = async (req, res) => {
       pedidoPDF,
       clientePDF,
       id,
-      layout: false,
+      message: 'Presupuesto',
     });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
-const getPDF = async (req, res) => {
+let imgPath = path.resolve('img', 'Background.jpg');
+function base64_encode(img) {
+  let png = fs.readFileSync(img);
+  return new Buffer.from(png).toString('base64');
+}
+
+// DATA OBJECT PDF
+const datos = async (req, res) => {
   const { id } = req.params;
   const pedidoPDF = await model.getOrder(id);
   const clienteID = await model.getCustomerID(id);
   const id_cliente = clienteID[0].id_cliente;
   const clientePDF = await model.getCustomerPdf(id_cliente);
 
-  console.log(pedidoPDF);
-
-  const doc = new PDF({ buufferPage: true });
-  const filename = `Factura${Date.now()}.pdf`;
-  const stream = res.writeHead(200, {
-    'Content-Type': 'application/pdf',
-    'Content-disposition': `attachment;filename=${filename}`,
-  });
-  doc.on('data', (data) => {
-    stream.write(data);
-  });
-  doc.on('end', () => {
-    stream.end();
+  const productos = pedidoPDF.map((key) => {
+    return {
+      quantity: key.cantidad,
+      description: key.producto,
+      price: key.precio,
+      tax: req.body.tax,
+    };
   });
 
-  doc.setDocumentHeader(
-    {
-      height: '20%',
+  const presupuestoID = `${pedidoPDF[0].id}`;
+  let data = {
+    documentTitle: '', //Defaults to INVOICE
+    currency: 'USD',
+    taxNotation: 'IVA',
+    marginTop: 20,
+    marginRight: 20,
+    marginLeft: 20,
+    marginBottom: 10,
+    background: `${base64_encode(imgPath)}`,
+
+    sender: {
+      company: '',
+      address: 'Aristóbulo del Valle Nro. 3360',
+      zip: 'Lanús Oeste - CP. 1824',
+      city: 'Buenos Aires',
+      country: '',
+      custom1: '',
+      custom2: 'Teléfono : 4209-2699 / 116-633-1765',
+      custom3: 'Email : casaluongo@hotmail.com',
     },
-    () => {
-      doc.fontSize(20).text('PRESUPUESTO', {
-        width: 420,
-        align: 'center',
-      });
-      doc.fontSize(14);
-      doc.text('Datos del Comercio', {
-        width: 420,
-        align: 'left',
-      });
-      doc.text(`Nombre: ${clientePDF[0].nombre}`, {
-        width: 350,
-        align: 'right',
-      });
-      doc.text(`Apellido: ${clientePDF[0].apellido}`, {
-        width: 350,
-        align: 'right',
-      });
-    }
+    invoiceNumber: `${pedidoPDF[0].id}`,
+    invoiceDate: `${new Date().toLocaleDateString()}`,
+    client: {
+      company: `Cliente:   ${clientePDF[0].nombre} ${clientePDF[0].apellido}`,
+      address: `Domicilio: ${clientePDF[0].direccion}`,
+      zip: `Entre calles: ${clientePDF[0].entrecalles}`,
+      city: '',
+      country: '',
+      custom1: `Teléfono:  ${clientePDF[0].telefono}`,
+      custom2: `Observaciones: ${clientePDF[0].observaciones}`,
+    },
+    products: productos,
+    bottomNotice: 'Este presupuesto tiene una validez de 48 hs.',
+    translate: {
+      invoiceDate: ' Fecha ',
+      invoiceNumber: 'Presupuesto',
+      products: 'Producto',
+      quantity: 'Cantidad',
+      price: 'Precio',
+      subtotal: 'Sub-Total',
+      total: 'Total',
+    },
+  };
+  await invoicePdf(data, presupuestoID);
+  res.download(`./invoice/Presupuesto_Nro._${presupuestoID}.pdf`);
+};
+
+const invoicePdf = async (data, presupuestoID) => {
+  let result = await easyinvoice.createInvoice(data);
+  fs.writeFileSync(
+    `./invoice/Presupuesto_Nro._${presupuestoID}.pdf`,
+    result.pdf,
+    'base64'
   );
-  doc.addTable(
-    [
-      { key: 'cantidad', label: 'Cantidad', align: 'center' },
-      { key: 'producto', label: 'Producto', align: 'center' },
-      { key: 'precio', label: 'Precio', align: 'center' },
-      { key: 'subtotal', label: 'Subtotal', align: 'center' },
-    ],
-    pedidoPDF,
-    {
-      border: null,
-      width: 'fill_body',
-      striped: true,
-      stripedColors: ['#f6f6f6', '#f6f6f6'],
-      cellsPadding: 10,
-      marginLeft: 30,
-      marginRight: 30,
-      headAlign: 'center',
-    }
-  );
-  doc.setDocumentFooter({ height: '60%' }, () => {
-    doc.fontSize(15).text('TOTAL', doc.footer.x + 450, doc.footer.y + 10);
-  });
-  doc.render();
-  doc.end();
 };
 
 router.get('/', presupuesto);
 router.get('/productos', getProducts);
-
 router.post('/create/:id', createBudget);
 router.post('/createOrder/:id', createOrder);
 router.post('/deleteOrder/:pedidos', deleteProductOrder);
-router.post('/pdf/:id', viewPDF);
-router.get('/pdf/:id', getPDF);
+router.post('/pdf/:id', viewPDF); //Primer PDF
+router.post('/descargar/:id', datos);
 
 module.exports = router;

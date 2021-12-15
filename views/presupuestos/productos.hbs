@@ -1,16 +1,15 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="rows">
         <div class="container d-flex justify-content-around mt-2 mb-2">
-            <h3 class="text-center mt-2">Seleccione el Producto</h3>
+            <h3 class="text-center mt-2 titulo">Presupuesto - Total : <span class="text-center text-success">$
+                    {{total}}</span> </h3>
+            <button type="submit" class="btn" form="viewPDF"><i
+                    class="bi bi-file-earmark-pdf-fill icono__pdf"></i>PDF</button>
         </div>
+        {{>tablaPresupuestoPDF}}
     </div>
-    {{>tablaProductoPresupuesto}}
     <hr>
     <div class="rows">
-        <div class="container d-flex justify-content-around mt-2 mb-2">
-            <h3 class="text-center mt-2">Presupuesto - Total : {{total}}</h3>
-            <button type="submit" class="btn btn-danger" form="viewPDF">PDF</button>
-        </div>
+        {{>tablaProductoPresupuesto}}
     </div>
-    {{>tablaPresupuestoPDF}}
 </main>

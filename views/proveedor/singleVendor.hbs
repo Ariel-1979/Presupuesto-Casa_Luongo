@@ -1,1 +1,65 @@
-{{>singleVendor}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h3 class="titulo">Editar Proveedor</h3>
+
+    {{#each vendor}}
+    <form action="/proveedor/delete/{{id}}" class="row g-3 mt-3" method="post" id="deleteForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+    </form>
+
+    <form action="/proveedor/editar/{{id}}" class="row g-3 mt-3" method="post" id="editForm">
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="RAZON SOCIAL">
+        </div>
+        <div class="col-9">
+            <input type="text" readonly class="form-control fw-bold" name="razon_social" placeholder="{{razon_social}}"
+                value="{{razon_social}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="NOMBRE">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="nombre" placeholder="{{nombre}}" value="{{nombre}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="APELLIDO">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="apellido" placeholder="{{apellido}}"
+                value="{{apellido}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="DIRECCIÓN">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="direccion" placeholder="{{direccion}}"
+                value="{{direccion}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="TELÉFONO">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="telefono" placeholder="{{telefono}}"
+                value="{{telefono}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="EMAIL">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="email" placeholder="{{email}}" value="{{email}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="DETALLES">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="observaciones" placeholder="{{observaciones}}"
+                value="{{observaciones}}">
+        </div>
+        <div class="col-12 d-flex justify-content-around">
+            <button type="submit" form="deleteForm" class="btn btn-outline-danger"><i
+                    class="bi bi-trash icono__papelera"></i></button>
+            <button type="submit" form="editForm" class="btn btn-outline-success"><i
+                    class="bi bi-check2-all icono__editar"></i></button>
+        </div>
+    </form>
+    {{/each}}
+</main>

@@ -3,24 +3,31 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon -e js,hbs,json npm start"
+    "build": "babel ./app.js --out-dir build",
+    "start": "babel-node ./bin/www",
+    "dev": "nodemon -e js,hbs,json npm start "
   },
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
+    "easyinvoice": "^1.0.153",
     "express": "~4.16.1",
+    "express-session": "^1.17.2",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
+    "morgan": "^1.9.1",
     "mysql": "^2.18.1",
-    "pdfkit": "^0.13.0",
-    "pdfkit-construct": "^1.2.3",
+    "sha1": "^1.1.1",
     "util": "^0.12.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "nodemon": "^2.0.15"
   }
 }

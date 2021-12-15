@@ -1,0 +1,18 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    {{#if success_msg}}
+    <div class="rows d-flex justify-content-center align-items-center">
+        <div class="alert alert-success alert-dismissible fade show alerta" role="alert">
+            <span class="text-dark fw-bold text-center">{{success_msg}}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {{/if}}
+    {{#if danger_msg}}
+    <div class="rows d-flex justify-content-center align-items-center">
+        <div class="alert alert-danger alert-dismissible fade show alerta" role="alert">
+            <span class="text-dark fw-bold alerta__caja">{{danger_msg}}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {{/if}}
+</main>

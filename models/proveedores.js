@@ -8,7 +8,7 @@ const allVendors = async () => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -19,7 +19,7 @@ const createVendor = async (obj) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -30,7 +30,7 @@ const singleVendor = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -39,10 +39,9 @@ const editVendor = async (id, obj) => {
     const query = 'UPDATE ?? SET ? WHERE id = ?';
     const params = [TABLA_PROVEEDOR, obj, id];
     const rows = await pool.query(query, params);
-    console.log(rows);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -53,9 +52,10 @@ const deleteVendor = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
+
 module.exports = {
   allVendors,
   singleVendor,

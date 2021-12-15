@@ -1,0 +1,54 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h3 class="titulo">Datos del Producto</h3>
+    {{#each product}}
+    <form action="/producto/delete/{{id}}" class="row g-3 mt-3" method="post" id="deleteForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+    </form>
+    <hr>
+    <form action="/producto/editar/{{id}}" class="row g-3 mt-3" method="post" id="editForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="PROVEEDOR">
+        </div>
+        <div class="col-4">
+            <input type="text" readonly class="form-control text-center fw-bold" name="proveedor"
+                placeholder="{{proveedor}}" value="{{proveedor}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="CATEGORIA">
+        </div>
+        <div class="col-4">
+            <input type="text" readonly class="form-control text-center fw-bold" name="categoria"
+                placeholder="{{categoria}}" value="{{categoria}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="PRODUCTO">
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control fw-bold" name="nombre" placeholder="{{nombre}}" value="{{nombre}}">
+        </div>
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext fw-bold" value="OBSERVACIONES">
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control fw-bold" name="observaciones" placeholder="{{observaciones}}"
+                value="{{observaciones}}">
+        </div>
+
+        <div class="col-2">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold text-success"
+                id="staticEmail2" value="PRECIO DE VENTA">
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control fw-bold text-success text-center" id="inputPassword2" name="precio"
+                placeholder="{{precio}}" value="{{precio}}">
+        </div>
+        <div class="col-2 d-flex justify-content-around">
+            <form action="/" method="get">
+                <button type="submit" class="btn"><i class="bi bi-check2-all icono__editar">Volver</i></button>
+            </form>
+        </div>
+    </form>
+    {{/each}}
+    <hr />
+</main>

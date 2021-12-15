@@ -9,7 +9,7 @@ const allProducts = async () => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -20,7 +20,7 @@ const singleProduct = async (id) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -31,7 +31,7 @@ const createProduct = async (obj) => {
     const rows = await pool.query(query, params);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -43,19 +43,25 @@ const editProduct = async (id, obj) => {
     console.log(rows);
     return rows;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
-const dropProduct = async (id) => {
+const deleteProduct = async (id) => {
   try {
-    const query = 'DELETE FROM ?? WHERE id_insumos = ?';
-    const params = [TABLA_INSUMOS, id];
+    const query = 'DELETE FROM ?? WHERE id = ?';
+    const params = [TABLA_PRODUCTOS, id];
     const rows = await pool.query(query, params);
     return rows;
   } catch (e) {
-    console.log(e);
+    throw error;
   }
 };
 
-module.exports = { allProducts, singleProduct, createProduct, editProduct };
+module.exports = {
+  allProducts,
+  singleProduct,
+  createProduct,
+  editProduct,
+  deleteProduct,
+};

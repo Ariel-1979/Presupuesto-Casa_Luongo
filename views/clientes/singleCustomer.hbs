@@ -1,1 +1,104 @@
-{{>singleCustomer}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h3 class="titulo">Editar Cliente</h3>
+
+    {{#each customer}}
+    <form action="/cliente/drop/{{id}}" class="row g-3 mt-3" method="post" id="deleteForm">
+        <input type="text" readonly class="visually-hidden" name="id" value="{{id}}">
+    </form>
+
+    <form action="/cliente/editar/{{id}}" class="row g-3 mt-3" method="post" id="editForm">
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="RAZON SOCIAL">
+        </div>
+        <div class="col-9">
+            <input type="text" readonly class="form-control fw-bold" name="razon_social" placeholder="{{razon_social}}"
+                value="{{razon_social}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="DNI / CUIT">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="dni" placeholder="{{dni}}" value="{{dni}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="CONDICIÓN FISCAL">
+        </div>
+        <div class="col-9">
+            <select class="form-select fw-bold" aria-label="Default select example" name="condicion_fiscal">
+                <option value={{condicion_fiscal}}>Actual : {{condicion_fiscal}}</option>
+                <option value="Consumidor Final">Consumidor Final</option>
+                <option value="Responsable Inscripto">Responsable Inscripto</option>
+                <option value="Iva Exento">Iva Exento</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="NOMBRE">
+        </div>
+        <div class="col-9">
+            <input type="text" id="validationDefault01" class="form-control fw-bold" name="nombre"
+                placeholder="{{nombre}}" value="{{nombre}}" required>
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="APELLIDO">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="apellido" placeholder="{{apellido}}"
+                value="{{apellido}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="DIRECCIÓN">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="direccion" placeholder="{{direccion}}"
+                value="{{direccion}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="ENTRE CALLES">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="entrecalles" placeholder="{{entrecalles}}"
+                value="{{entrecalles}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="TELÉFONO">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="telefono" placeholder="{{telefono}}"
+                value="{{telefono}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="EMAIL">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="email" placeholder="{{email}}" value="{{email}}">
+        </div>
+        <div class="col-3">
+            <input type="text" readonly class="form-control-plaintext text-center fw-bold" value="DETALLES">
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control fw-bold" name="observaciones" placeholder="{{observaciones}}"
+                value="{{observaciones}}">
+        </div>
+        <div class="col-12 d-flex justify-content-around">
+            <button type="submit" form="deleteForm" class="btn"><i class="bi bi-trash icono__papelera"></i></button>
+            <button type="submit" form="editForm" class="btn "><i class="bi bi-check2-all icono__editar"></i></button>
+        </div>
+    </form>
+    {{/each}}
+</main>
+<script>
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

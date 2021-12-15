@@ -1,1 +1,82 @@
+.icono {
+  font-size: 1.5rem;
+  color: blue;
+}
+.icono__pdf {
+  font-size: 1.5rem;
+  color: red;
+}
+.icono__papelera {
+  font-size: 1.5rem;
+  color: red;
+}
+.icono__editar {
+  font-size: 1.5rem;
+  color: green;
+}
+.icono__verde {
+  font-size: 1.5rem;
+  color: green;
+}
+.icono__error {
+  font-size: 2rem;
+  color: red;
+}
 
+.titulo {
+  text-decoration: wavy cornflowerblue underline;
+  font-style: italic;
+  text-align: center;
+}
+.alerta {
+  z-index: 10;
+  position: absolute;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25%;
+}
+
+.input__formulario {
+  width: 10rem;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dataTables_filter {
+  color: blue;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.dataTables_length {
+  color: blue;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.form-select-sm {
+  text-align: center;
+  color: red;
+}
+
+.dataTables_info {
+  color: blue;
+}
+
+.page-link {
+  color: blue !important;
+}
+
+#PDF {
+  text-align: center;
+}
+
+#PDF canvas {
+  border: 1px solid black;
+  width: 95%;
+}

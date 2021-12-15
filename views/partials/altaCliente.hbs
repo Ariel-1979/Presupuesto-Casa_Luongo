@@ -1,42 +1,82 @@
 <div class="mb-3 row">
     <label for="razon_social" class="col-sm-2 col-form-label">Razón Social</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="razon_social" name="razon_social">
+        <input type="text" id="validationDefault01" class="form-control fw-bold" id="razon_social" name="razon_social"
+            required>
     </div>
 </div>
 <div class="mb-3 row">
+    <label for="nombre" class="col-sm-2 col-form-label">C.U.I.T / D.N.I .</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control fw-bold" name="dni">
+    </div>
+</div>
+<div class="mb-3 row">
+    <label for="nombre" class="col-sm-2 col-form-label">Condición Fiscal</label>
+    <div class="col-sm-10">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Seleccione una opción</option>
+            <option value="Consumidor Final">Consumidor Final</option>
+            <option value="Responsable Inscripto">Responsable Inscripto</option>
+            <option value="Iva Exento">Iva Exento</option>
+        </select>
+    </div>
+</div>
+
+<div class="mb-3 row">
     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="nombre" name="nombre">
+        <input type="text" id="validationDefault02" class="form-control fw-bold" id="nombre" name="nombre" required>
     </div>
 </div>
 <div class="mb-3 row">
     <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="apellido" name="apellido">
+        <input type="text" class="form-control fw-bold" id="apellido" name="apellido">
     </div>
 </div>
 <div class="mb-3 row">
     <label for="direccion" class="col-sm-2 col-form-label">Dirección</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="direccion" name="direccion">
+        <input type="text" class="form-control fw-bold" id="direccion" name="direccion">
     </div>
 </div>
 <div class="mb-3 row">
     <label for="telefono" class="col-sm-2 col-form-label">Teléfono</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="telefono" name="telefono">
+        <input type="text" class="form-control fw-bold" id="telefono" name="telefono">
     </div>
 </div>
 <div class="mb-3 row">
     <label for="email" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="email" name="email">
+        <input type="text" class="form-control fw-bold" id="email" name="email">
     </div>
 </div>
 <div class="mb-3 row">
     <label for="observaciones" class="col-sm-2 col-form-label">Observaciones</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext fw-bold" id="observaciones" name="observaciones">
+        <input type="text" class="form-control fw-bold" id="observaciones" name="observaciones">
     </div>
 </div>
+<script>// Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
