@@ -20,6 +20,7 @@ const categoriaRouter = require('./routes/categoria');
 const presupuestoRouter = require('./routes/presupuesto');
 const preciosRouter = require('./routes/usuario/precios');
 const invoiceRouter = require('./routes/presupuesto');
+const busquedaRouter = require('./routes/busqueda');
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.use('/producto', verifyAdmin, productoRouter);
 app.use('/categoria', verifyAdmin, categoriaRouter);
 app.use('/presupuesto', verifyAdmin, presupuestoRouter);
 app.use('/presupuesto', verifyAdmin, invoiceRouter);
+app.use('/busqueda', busquedaRouter);
 app.use('/precios', verifyUser, preciosRouter);
 
 // catch 404 and forward to error handler

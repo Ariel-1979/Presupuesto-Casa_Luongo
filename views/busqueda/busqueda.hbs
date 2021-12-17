@@ -1,0 +1,122 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="container mt-2 mb-2">
+        <div class="row">
+            <div class="col-6">
+                <form class="row g-3" action="/busqueda/download" method="post">
+                    <h3 class="mt-3">Descargar Presupuesto Existente</h3>
+                    <div class="col-4">
+                        <label for="staticEmail2" class="visually-hidden">Email</label>
+                        <input type="text" readonly class="form-control-plaintext text-center fw-bold" id="staticEmail2"
+                            value="Presupuesto Nro.">
+                    </div>
+                    <div class="col-4">
+                        <label for="inputPassword2" class="visually-hidden">Nro.</label>
+                        <input type="number" class="form-control" id="inputPassword2" name="presupuestoNro"
+                            placeholder="Nro.">
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary mb-3">Descargar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <form action="/busqueda/busqueda_cliente" class="row g-3" method="post">
+                    <h3>Presupuestos por Cliente</h3>
+                    <div class="col-4">
+                        <label for="staticEmail2" class="visually-hidden">Cliente</label>
+                        <input type="text" readonly class="form-control-plaintext text-center fw-bold" id="staticEmail2"
+                            value="Cliente ID.">
+                    </div>
+                    <div class="col-4">
+                        <label for="inputPassword2" class="visually-hidden">Nro.</label>
+                        <input type="number" class="form-control" name="id_cliente" placeholder="Nro.">
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary mb-3">Obtener</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {{#if cliente}}
+    <table class="table table-sm" style="width:100%">
+        <thead>
+            <tr class="text-center fw-bold text-primary">
+                <th scope="col">Razon Social</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Domicilio</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each cliente}}
+            <tr class="text-center fw-bold">
+                <td>{{razon_social}}</td>
+                <td>{{apellido}}</td>
+                <td>{{nombre}}</td>
+                <td>{{direccion}}</td>
+                <td>{{telefono}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <table id="tabla" class="table table-sm" style="width:100%">
+        <thead>
+            <tr class="text-center fw-bold text-primary">
+                <th scope="col">Presupuesto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Ver</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each presupuestos}}
+            <tr class="text-center fw-bold">
+                <td>{{id_presupuesto}}</td>
+                <td>{{ts_create}}</td>
+                <td>
+                    <form action="/busqueda/busqueda_cliente/modal" method="POST">
+                        <input type="text" readonly class="visually-hidden" name="id_presupuesto"
+                            value="{{id_presupuesto}}">
+                        <button type="submit" class="btn"><i class="bi bi-eye"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/if}}
+    {{#if detallePresupuesto}}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">Presupuesto Nro. {{id_presupuesto}}</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table table-sm" style="width:100%">
+                    <thead>
+                        <tr class="text-center fw-bold text-primary">
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each detallePresupuesto}}
+                        <tr class="text-center fw-bold">
+                            <td>{{producto}}</td>
+                            <td>{{cantidad}}</td>
+                            <td>{{precio}}</td>
+                            <td>{{subtotal}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</main>

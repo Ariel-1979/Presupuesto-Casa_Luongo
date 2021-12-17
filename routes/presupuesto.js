@@ -86,7 +86,7 @@ const createOrder = async (req, res) => {
       cantidad: req.body.cantidad,
       subtotal: req.body.precio * req.body.cantidad,
     };
-    const pedido = await model.createOrder(obj);
+    await model.createOrder(obj);
     res.redirect('/presupuesto/productos');
   } catch (error) {
     throw error;

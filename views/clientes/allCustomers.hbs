@@ -11,6 +11,7 @@
     <table id="tabla" class="table " style="width:100%">
         <thead>
             <tr class="text-center fw-bold text-primary">
+                <th scope="col">ID</th>
                 <th scope="col">Razón Social</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
@@ -21,6 +22,7 @@
         <tbody>
             {{#each allCustomers}}
             <tr class="text-center fw-bold">
+                <td>{{id}}</td>
                 <td>{{razon_social}}</td>
                 <td>{{nombre}}</td>
                 <td>{{apellido}}</td>
