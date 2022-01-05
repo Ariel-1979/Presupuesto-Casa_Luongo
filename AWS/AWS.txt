@@ -1,0 +1,68 @@
+Usuario arieldominguez001@gmail.com
+Clave   Agustin_170104
+Cuenta  ARIEL_DOMINGUEZ
+
+API REST
+
+EC   --> NodeJs (Linux)
+RDS  --> BD
+S3 --> Front End
+Route 53 --> Dominio
+
+
+Crear Instancia. 
+
+Paso 1: Elegir una imagen de Amazon Machine (AMI)
+
+Paso 2: Página Choose an Instance Type
+
+
+Paso 7:
+Seleccionar Par de Claves Archvio . PEM
+
+
+Casa_Luongo_Presupuesto
+Dirección IPv4 pública
+15.228.242.153
+
+Conectarme a la máquina Virtual 
+
+En Git Bash (en la misma carpeta donde está el archivo PEM)
+
+ssh -i Casa_Luongo.pem ubuntu@54.207.46.113
+
+Bash
+
+pwd - muestra el directorio actual
+
+*	Git Clone.. dentro de la instancia
+
+*	sudo apt-get update - actualizar el Sitema Operativo de la instancia
+
+*	sudo apt-get install nodejs
+
+*	sudo apt-get install npm
+
+*	npm install forever -g
+
+*       sudo apt-get install apache2 
+
+Para verificar que apache está corriendo
+
+*	sudo systemctl status apache2
+
+
+
+
+Lanzar Aplicación
+
+sudo forever start ./bin/www
+
+
+Base de Datos
+
+Nombre : casa-luongo
+Usuario :  admin
+Clave :   rbzXgWcgOtcdrfAy6ko1
+Punto de enlace: 
+ casa-luongo.cjhn11v7hmka.sa-east-1.rds.amazonaws.com

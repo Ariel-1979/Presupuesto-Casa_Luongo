@@ -153,6 +153,10 @@ const datos = async (req, res) => {
     };
   });
 
+  const format = (date, locale, options) =>
+    new Intl.DateTimeFormat(locale, options).format(date);
+  const now = new Date();
+
   const presupuestoID = `${pedidoPDF[0].id}`;
   let data = {
     documentTitle: '', //Defaults to INVOICE
@@ -175,7 +179,7 @@ const datos = async (req, res) => {
       custom3: 'Email : casaluongo@hotmail.com',
     },
     invoiceNumber: `${pedidoPDF[0].id}`,
-    invoiceDate: `${new Date().toLocaleDateString()}`,
+    invoiceDate: `${format(now, 'es')}`,
     client: {
       company: `Cliente:   ${clientePDF[0].nombre} ${clientePDF[0].apellido}`,
       address: `Domicilio: ${clientePDF[0].direccion}`,
