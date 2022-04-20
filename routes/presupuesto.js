@@ -63,6 +63,7 @@ const getProducts = async (req, res) => {
     subtotal.forEach((element) => {
       total = total + element;
     });
+    console.log('Presupuesto', presupuesto);
     res.render('./presupuestos/productos', {
       productos,
       proveedor,
@@ -210,11 +211,13 @@ const datos = async (req, res) => {
 
 const invoicePdf = async (data, presupuestoID) => {
   let result = await easyinvoice.createInvoice(data);
+  console.log('RESULTADO', result);
   fs.writeFileSync(
     `./invoice/Presupuesto_Nro._${presupuestoID}.pdf`,
     result.pdf,
     'base64'
   );
+  console.log('Por aca2');
 };
 
 router.get('/', presupuesto);

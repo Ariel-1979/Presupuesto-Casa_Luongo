@@ -39,6 +39,7 @@ const singleProduct = async (id) => {
 
 const createOrder = async (obj) => {
   try {
+    console.log('Objeto Create Order', obj);
     const query = 'INSERT INTO ?? SET ?';
     const params = [TABLA_PEDIDO, obj];
     const rows = await pool.query(query, params);
