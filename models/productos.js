@@ -1,4 +1,3 @@
-const { PayloadTooLarge } = require('http-errors');
 const pool = require('./../utils/bd');
 const TABLA_PRODUCTOS = 'productos';
 
@@ -40,7 +39,6 @@ const editProduct = async (id, obj) => {
     const query = 'UPDATE ?? SET ? WHERE id = ?';
     const params = [TABLA_PRODUCTOS, obj, id];
     const rows = await pool.query(query, params);
-    console.log(rows);
     return rows;
   } catch (error) {
     throw error;

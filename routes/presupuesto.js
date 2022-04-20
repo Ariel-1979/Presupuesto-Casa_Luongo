@@ -62,7 +62,6 @@ const getProducts = async (req, res) => {
     );
     subtotal.forEach((element) => {
       total = total + element;
-      console.log(total);
     });
     res.render('./presupuestos/productos', {
       productos,
@@ -149,7 +148,7 @@ const datos = async (req, res) => {
       quantity: key.cantidad,
       description: key.producto,
       price: key.precio,
-      tax: req.body.tax,
+      'tax-rate': req.body.tax,
     };
   });
 
@@ -159,15 +158,14 @@ const datos = async (req, res) => {
 
   const presupuestoID = `${pedidoPDF[0].id}`;
   let data = {
-    documentTitle: '', //Defaults to INVOICE
-    currency: 'USD',
-    taxNotation: 'IVA',
-    marginTop: 20,
-    marginRight: 20,
-    marginLeft: 20,
-    marginBottom: 10,
-    background: `${base64_encode(imgPath)}`,
-
+    images: {
+      background: `${base64_encode(imgPath)}`,
+    },
+    settings: {
+      currency: 'USD',
+      'tax-notation': 'IVA',
+      format: 'A4',
+    },
     sender: {
       company: '',
       address: 'Aristóbulo del Valle Nro. 3360',
@@ -178,8 +176,11 @@ const datos = async (req, res) => {
       custom2: 'Teléfono : 4209-2699 / 116-633-1765',
       custom3: 'Email : casaluongo@hotmail.com',
     },
-    invoiceNumber: `${pedidoPDF[0].id}`,
-    invoiceDate: `${format(now, 'es')}`,
+    information: {
+      number: `${pedidoPDF[0].id}`,
+      date: `${format(now, 'es')}`,
+      'due-date': 'por 48 hs',
+    },
     client: {
       company: `Cliente:   ${clientePDF[0].nombre} ${clientePDF[0].apellido}`,
       address: `Domicilio: ${clientePDF[0].direccion}`,
@@ -190,10 +191,12 @@ const datos = async (req, res) => {
       custom2: `Observaciones: ${clientePDF[0].observaciones}`,
     },
     products: productos,
-    bottomNotice: 'Este presupuesto tiene una validez de 48 hs.',
+    /* 'bottom-notice': 'Este presupuesto tiene una validez de 48 hs.', */
     translate: {
-      invoiceDate: ' Fecha ',
-      invoiceNumber: 'Presupuesto',
+      invoice: 'PRESUPUESTO',
+      number: 'Nro.',
+      date: 'Fecha',
+      'due-date': 'Valido',
       products: 'Producto',
       quantity: 'Cantidad',
       price: 'Precio',

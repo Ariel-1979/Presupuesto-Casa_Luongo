@@ -53,7 +53,6 @@ const addOrder = async (obj, id) => {
     const query = 'UPDATE ?? SET ? WHERE id = ?';
     const params = [TABLA_PEDIDO, obj, id];
     const rows = await pool.query(query, params);
-    console.log(rows);
     return rows;
   } catch (error) {
     throw error;

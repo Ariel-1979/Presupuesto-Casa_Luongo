@@ -42,8 +42,7 @@ const editProduct = async (req, res) => {
   try {
     const id = req.params.id;
     const obj = req.body;
-    console.log(obj);
-    const editProducts = await model.editProduct(id, obj);
+    await model.editProduct(id, obj);
     req.flash('success_msg', 'Producto Editado con Éxito');
     res.redirect('/producto');
   } catch (error) {

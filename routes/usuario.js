@@ -12,7 +12,6 @@ const createUser = async (req, res) => {
     req.flash('success_msg', 'USUARIO CREADO CON ÉXITO');
     res.redirect('/usuario');
   } catch (error) {
-    console.log(error);
     req.flash('danger_msg', 'ERROR AL CREAR EL USUARIO');
     res.redirect('/usuario');
   }
